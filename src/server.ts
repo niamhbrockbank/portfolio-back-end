@@ -15,19 +15,29 @@ async function execute() {
   await client.connect();
 }
 
+execute();
+
 //Get all projects
 app.get("/", async (req, res) => {
-  const results = await client.query("SELECT * FROM projects");
-  res.json(results.rows);
+  try {
+    const results = await client.query("SELECT * FROM projects");
+    res.json(results.rows);
+  } catch (error) {
+    console.error(error);
+  }
 });
 
 //Get one project
 app.get("/:id", async (req, res) => {
-  const { id } = req.params;
-  const results = await client.query("SELECT * FROM projects WHERE id = $1", [
-    id,
-  ]);
-  res.json(results.rows);
+  try {
+    const { id } = req.params;
+    const results = await client.query("SELECT * FROM projects WHERE id = $1", [
+      id,
+    ]);
+    res.json(results.rows);
+  } catch (error) {
+    console.error(error);
+  }
 });
 
 app.listen(PORT_NUMBER, () => {
