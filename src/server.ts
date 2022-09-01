@@ -11,23 +11,23 @@ dotenv.config();
 
 const PORT_NUMBER = process.env.PORT || 4000;
 
+async function execute() {
+  await client.connect();
+}
+
 //Get all projects
 app.get("/", async (req, res) => {
-  await client.connect();
   const results = await client.query("SELECT * FROM projects");
   res.json(results.rows);
-  await client.end();
 });
 
 //Get one project
 app.get("/:id", async (req, res) => {
-  await client.connect();
   const { id } = req.params;
   const results = await client.query("SELECT * FROM projects WHERE id = $1", [
     id,
   ]);
   res.json(results.rows);
-  await client.end();
 });
 
 app.listen(PORT_NUMBER, () => {
