@@ -9,7 +9,7 @@ app.use(express.json());
 app.use(cors());
 dotenv.config();
 
-const PORT_NUMBER = process.env.PORT ?? 4000;
+const PORT_NUMBER = process.env.PORT || 4000;
 
 //Get all projects
 app.get("/", async (req, res) => {
