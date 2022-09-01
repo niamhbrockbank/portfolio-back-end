@@ -1,3 +1,3 @@
-import {Client} from "pg"
+import { Client } from "pg";
 
-export const client = new Client({ database: 'portfolioDatabase' })
+export const client = new Client({ database: "portfolioDatabase" });
