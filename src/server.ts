@@ -11,8 +11,8 @@ dotenv.config();
 
 const PORT_NUMBER = process.env.PORT || 4000;
 
-async function execute(){
-  await client.connect()
+async function execute() {
+  await client.connect();
 }
 
 //Get all projects
