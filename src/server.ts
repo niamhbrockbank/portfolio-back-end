@@ -1,11 +1,13 @@
 import express from "express";
 import { client } from "./db";
 import cors from "cors";
+import dotenv from "dotenv"
 
 //middleware
 const app = express();
 app.use(express.json());
 app.use(cors());
+dotenv.config()
 
 async function execute() {
   await client.connect();
@@ -28,6 +30,7 @@ app.get("/:id", async (req, res) => {
   res.json(results.rows);
 });
 
-app.listen(5000, () => {
+const port = process.env.PORT ?? 4000
+app.listen(port, () => {
   console.log("Server is listening on port 5000");
 });
